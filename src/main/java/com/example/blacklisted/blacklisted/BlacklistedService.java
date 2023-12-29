@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Service
 public class BlacklistedService {
@@ -15,8 +17,9 @@ public class BlacklistedService {
     public BlacklistedService(BlacklistedRepository blacklistedRepository) {
         this.blacklistedRepository = blacklistedRepository;
     }
-    public List<Blacklisted> getBlacklistedMembers() {
-        return blacklistedRepository.findAll();
+
+    public Page<Blacklisted> getBlacklistedMembers(Pageable pageable) {
+        return blacklistedRepository.findAll(pageable);
     }
 
     public Optional<Blacklisted> getBlacklistedMember(String id) {

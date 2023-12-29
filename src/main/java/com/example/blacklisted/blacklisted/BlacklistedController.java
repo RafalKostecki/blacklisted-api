@@ -5,9 +5,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @RestController
 @RequestMapping(path = "/api/blacklisted")
+@CrossOrigin(origins = "http://localhost:4200")
 public class BlacklistedController {
 
     private final BlacklistedService blacklistedService;
@@ -16,13 +19,12 @@ public class BlacklistedController {
     public BlacklistedController(BlacklistedService blacklistedService) {
         this.blacklistedService = blacklistedService;
     }
-    @CrossOrigin(origins = "http://localhost:4200")
+
     @GetMapping
-    public List<Blacklisted> getBlacklistedMembers() {
-        return this.blacklistedService.getBlacklistedMembers();
+    public Page<Blacklisted> getBlacklistedMembers(Pageable pageable) {
+        return this.blacklistedService.getBlacklistedMembers(pageable);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{id}")
     public Optional<Blacklisted> getBlacklistedMember(@PathVariable String id) {
         return this.blacklistedService.getBlacklistedMember(id);
