@@ -7,19 +7,25 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Offers")
+@Table(name = "Blacklisted")
 public class Blacklisted {
     @Id
     private String id;
-    private String title;
-    private String description;
+    private String name;
+    private String surname;
+    private String content;
+    private String city;
+    private Boolean verified;
 
     public Blacklisted() {}
 
-    public Blacklisted(String id, String title, String description) {
+    public Blacklisted(String id, String name, String surname, String content, String city, Boolean verified) {
         this.id = id;
-        this.title = title;
-        this.description = description;
+        this.name = name;
+        this.surname = surname;
+        this.content = content;
+        this.city = city;
+        this.verified = verified;
     }
 
     public String getId() {
@@ -30,19 +36,42 @@ public class Blacklisted {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Boolean getVerified() {
+        return verified;
+    }
+
+    public void setVerified(Boolean verified) {
+        this.verified = verified;
     }
 }
