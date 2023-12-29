@@ -1,28 +1,32 @@
 package com.example.blacklisted.blacklisted;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
+
 import java.time.ZonedDateTime;
+import java.util.UUID;
 
 @Data
 @Entity
 @Table(name = "Blacklisted")
 public class Blacklisted {
     @Id
-    private String id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "id")
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
     private String name;
     private String surname;
     private String content;
     private String city;
-    private Boolean verified;
+    private Boolean verified = false;
 
-    private ZonedDateTime createdAt;
+    private ZonedDateTime createdAt = ZonedDateTime.now();
 
     public Blacklisted() {}
 
-    public Blacklisted(String id, String name, String surname, String content, String city, Boolean verified, ZonedDateTime createdAt) {
+    public Blacklisted(UUID id, String name, String surname, String content, String city, Boolean verified, ZonedDateTime createdAt) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -32,11 +36,16 @@ public class Blacklisted {
         this.createdAt = createdAt;
     }
 
-    public String getId() {
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = ZonedDateTime.now();
+    }
+
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

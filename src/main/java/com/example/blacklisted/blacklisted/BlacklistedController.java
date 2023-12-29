@@ -29,4 +29,9 @@ public class BlacklistedController {
     public Optional<Blacklisted> getBlacklistedMember(@PathVariable String id) {
         return this.blacklistedService.getBlacklistedMember(id);
     }
+
+    @PostMapping
+    public Blacklisted createBlacklisted(@RequestBody Blacklisted blacklisted) {
+        return this.blacklistedService.createBlacklisted(blacklisted);
+    }
 }

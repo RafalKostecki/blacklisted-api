@@ -25,4 +25,8 @@ public class BlacklistedService {
     public Optional<Blacklisted> getBlacklistedMember(String id) {
         return blacklistedRepository.findById(id);
     }
+
+    public Blacklisted createBlacklisted(Blacklisted blacklisted) {
+        return blacklistedRepository.save(blacklisted);
+    }
 }
