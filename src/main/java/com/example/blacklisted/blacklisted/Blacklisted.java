@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
+import java.time.ZonedDateTime;
 
 @Data
 @Entity
@@ -17,15 +18,18 @@ public class Blacklisted {
     private String city;
     private Boolean verified;
 
+    private ZonedDateTime createdAt;
+
     public Blacklisted() {}
 
-    public Blacklisted(String id, String name, String surname, String content, String city, Boolean verified) {
+    public Blacklisted(String id, String name, String surname, String content, String city, Boolean verified, ZonedDateTime createdAt) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.content = content;
         this.city = city;
         this.verified = verified;
+        this.createdAt = createdAt;
     }
 
     public String getId() {
@@ -73,5 +77,13 @@ public class Blacklisted {
 
     public void setVerified(Boolean verified) {
         this.verified = verified;
+    }
+
+    public ZonedDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(ZonedDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
