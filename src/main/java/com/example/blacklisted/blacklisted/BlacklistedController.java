@@ -16,6 +16,7 @@ public class BlacklistedController {
     public BlacklistedController(BlacklistedService blacklistedService) {
         this.blacklistedService = blacklistedService;
     }
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
     public List<Blacklisted> getBlacklistedMembers() {
         return this.blacklistedService.getBlacklistedMembers();
