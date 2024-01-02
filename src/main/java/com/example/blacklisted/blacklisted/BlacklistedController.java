@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -27,7 +29,8 @@ public class BlacklistedController {
 
     @GetMapping("/{id}")
     public Optional<Blacklisted> getBlacklistedMember(@PathVariable String id) {
-        return this.blacklistedService.getBlacklistedMember(id);
+        UUID uuid = UUID.fromString(id);
+        return this.blacklistedService.getBlacklistedMember(uuid);
     }
 
     @PostMapping

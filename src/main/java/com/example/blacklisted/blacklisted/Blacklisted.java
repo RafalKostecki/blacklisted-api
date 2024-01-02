@@ -16,11 +16,20 @@ public class Blacklisted {
     @GenericGenerator(name = "id")
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
+
     private String name;
     private String surname;
     private String content;
     private String city;
     private Boolean verified = false;
+
+    public ZonedDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(ZonedDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 
     private ZonedDateTime createdAt = ZonedDateTime.now();
 
@@ -88,11 +97,5 @@ public class Blacklisted {
         this.verified = verified;
     }
 
-    public ZonedDateTime getCreatedAt() {
-        return createdAt;
-    }
 
-    public void setCreatedAt(ZonedDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
 }
